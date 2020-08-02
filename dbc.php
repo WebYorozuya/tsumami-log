@@ -1,99 +1,100 @@
 <?php
-
+require_once('env.php');
+//エラー表示
 ini_set('display_errors',On);
+putenv("DBPASS=08120337");
+// echo getenv('DBPASS');
 
 
+//クラスDbc作成
 Class Dbc 
 {
-    protected $table_name;
+
+  //$table_nameを固定
+  protected $table_name;
+  //dbに接続
+  public function dbConnect(){
+    $host    = DB_HOST;
+    $dbname  = DB_NAME;
+    $dbuser  = DB_USER;  
+    $dbpass  = DB_PASS;
+    $dsn     = "mysql:host=$host;dbname=$dbname;charset=utf8";
     
-    //dbに接続
-    public function dbConnect(){
-      $dsn = 'mysql:host=localhost;dbname=tsumami_rog;charset=utf8';
-      $user= 'tsumami_user';
-      $pass= '08120337';
-      try{
-        $dbh = new \PDO($dsn,$user,$pass,[
-          \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-        ]); 
-        }catch(PDOException $e){
-        echo 'error' . $e->getMeage();
-        exit();
-        };
-        return $dbh;
-        }
+    try {
+      $dbh = new \PDO($dsn,$dbuser,$dbpass,
+      [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,]); 
+     }catch(PDOException $e){
+      echo 'error' . $e->getMeage();
+      exit();
+      };
+      return $dbh;
+   }
 
     //dbから情報を取得
-    public function getAlltsumami(){
+    public function getAll(){
       $dbh = $this->dbConnect();
-      $sql = "SELECT*FROM tsumamirog";
+      $sql = "SELECT*FROM $this->table_name";
       $stmt = $dbh->query($sql);
       $result = $stmt->fetchall(\PDO::FETCH_ASSOC);
       return $result;
       $dbh = null;
-     }
-
-
-    //カテゴリー名のセット
-    public function setCategoryName($category){
-    if($category === '1'){
-      return 'ビールにあう';
-    }elseif($category ==='2'){
-      return 'ワインにあう';
-    }elseif($category ==='3'){
-      return 'ウイスキーにあう';
-    }elseif($category ==='4'){
-      return '焼酎にあう';
-    }else{
-      return 'つまみ';
     }
-}
 
-
-    //dbのID
-    public function getRog($id){
+    //dbのIDを取得
+    public function getById($id){
       if(empty($id)){
         exit('IDが不正です');
-      }
-        $dbh = $this->dbConnect();
-        $stmt = $dbh->prepare('SELECT * FROM tsumamirog where id = :id');
-        $stmt->bindValue(':id',(int)$id,\PDO::PARAM_INT);
-      
-        $stmt->execute();
-        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-        //  var_dump($result);
-      
-        if(!$result){
-          exit('記事がありません');
         }
-        return $result;
-     }
+      $dbh = $this->dbConnect();
 
-     
-  public function logCreate($blogs){
-        $sql = 'INSERT INTO
-        tsumamirog(title,users,category,content)
-        VALUES
-        (:title,:users,:category,:content)';
-
-    $dbh = $this->dbConnect();
-    $dbh->beginTransaction();
-    try{
-      $stmt = $dbh->prepare($sql);
-      $stmt->bindValue(':title',$blogs['タイトル'],PDO::PARAM_STR);
-      $stmt->bindValue(':users',$blogs['ユーザー名'],PDO::PARAM_STR);
-      $stmt->bindValue(':category',$blogs['カテゴリー'],PDO::PARAM_INT);
-      $stmt->bindValue(':content',$blogs['投稿内容'],PDO::PARAM_STR);
+      $stmt = $dbh->prepare("SELECT * FROM $this->table_name where id = :id");
+      $stmt->bindValue(':id',(int)$id,\PDO::PARAM_INT);
       $stmt->execute();
-      $dbh->commit();
-      echo '投稿しました';
-    }catch(PDOException $e){
-      $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $dbh->rollBack();
-      exit ($e);
-}
+      $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-}
+       if(!$result){
+        exit('記事がありません');
+       }
+        return $result;
+    }
 
-} 
+    public function logUpdate($blogs){
+      $sql = "UPDATE $this->table_name SET
+          title = :title, users = :users, category = :category,content = :content;
+      WHERE
+            id =:id";
+
+      $dbh = $this->dbConnect();
+      $dbh->beginTransaction();
+      try{
+          $stmt = $dbh->prepare($sql);
+          $stmt->bindValue(':title',$blogs['タイトル'],PDO::PARAM_STR);
+          $stmt->bindValue(':users',$blogs['ユーザー名'],PDO::PARAM_STR);
+          $stmt->bindValue(':category',$blogs['カテゴリー'],PDO::PARAM_INT);
+          $stmt->bindValue(':content',$blogs['投稿内容'],PDO::PARAM_STR);
+          $stmt->bindValue(':id',$blogs['id'],PDO::PARAM_INT);
+          $stmt->execute();
+          $dbh->commit();
+          echo 'ログを更新しました';
+      }catch(PDOException $e){
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $dbh->rollBack();
+        exit ($e);
+    }
+  }
+    public function delete($id){
+      if(empty($id)){
+        exit('IDが不正です');
+        }
+      $dbh = $this->dbConnect();
+
+      $stmt = $dbh->prepare("DELETE FROM $this->table_name where id = :id");
+      $stmt->bindValue(':id',(int)$id,\PDO::PARAM_INT);
+      $stmt->execute();
+      echo '削除しました';
+      // return $result;
+    } 
+
+
+  }
 ?>
