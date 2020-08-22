@@ -2,9 +2,6 @@
 require_once('env.php');
 //エラー表示
 ini_set('display_errors',On);
-putenv("DBPASS=08120337");
-// echo getenv('DBPASS');
-
 
 //クラスDbc作成
 Class Dbc 
