@@ -24,6 +24,9 @@
         <a href="index.html"><li class='menu_list'>新規登録</li></a>
         <a href="#"><li class='menu_list'>検索</li></a>
       </ul>
+      <a href="./public/signup_form.php">ユーザ登録ページへ</a>
+      <br>
+      <a href="./public/login.php">ログインページへ</a>
   </div>
       <p class="menu_nav"> お酒のお供は人それぞれ<br>この「つまみログ」は皆さんのお勧めのおつまみを投稿し共有できるサイトです。
       <br>素敵な出会いがあるかも知れません</p>

@@ -69,7 +69,7 @@ Class Tsumami extends dbc
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $dbh->rollBack();
         exit ($e);
-}
+        }
       }
 
 
