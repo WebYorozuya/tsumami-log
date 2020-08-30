@@ -1,7 +1,7 @@
 <?php
 require_once('env.php');
 //エラー表示
-ini_set('display_errors',On);
+// ini_set('display_errors',On);
 
 //クラスDbc作成
 Class Dbc 
@@ -91,7 +91,5 @@ Class Dbc
       echo '削除しました';
       // return $result;
     } 
-
-
   }
 ?>
