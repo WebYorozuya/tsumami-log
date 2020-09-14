@@ -1,5 +1,7 @@
   <?php
+   ini_set('display_errors',On);
   require_once('tsumami.php');
+
   $tsumami = new Tsumami('tsumamilog');
   //dbからつまみログのデータを取得
   $tsumamiData = $tsumami->getAll();
@@ -14,6 +16,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/style.css">
   <title>ログ一覧</title>
 </head>
 <body>
@@ -24,12 +27,9 @@
         <a href="index.html"><li class='menu_list'>新規登録</li></a>
         <a href="#"><li class='menu_list'>検索</li></a>
       </ul>
-<<<<<<< HEAD
       <a href="./public/signup_form.php">ユーザ登録ページへ</a>
       <br>
       <a href="./public/login.php">ログインページへ</a>
-=======
->>>>>>> 1894f604992e8e5fc288054529270a583c6bc41e
   </div>
       <p class="menu_nav"> お酒のお供は人それぞれ<br>この「つまみログ」は皆さんのお勧めのおつまみを投稿し共有できるサイトです。
       <br>素敵な出会いがあるかも知れません</p>
