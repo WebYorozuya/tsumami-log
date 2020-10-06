@@ -3,7 +3,6 @@ require_once('dbc.php');
 
 Class Tsumami extends dbc
 {
-
     protected $table_name = 'tsumamilog';
     //カテゴリー名のセット
     public function setCategoryName($category){
@@ -23,9 +22,9 @@ Class Tsumami extends dbc
 
     public function logCreate($blogs){
       $sql = "INSERT INTO
-                  $this->table_name(title,users,category,content)
+                  $this->table_name(title,users,images,category,content)
               VALUES
-                 (:title,:users,:category,:content)";
+                 (:title,:users,:images,:category,:content)";
   
       $dbh = $this->dbConnect();
       $dbh->beginTransaction();
@@ -33,6 +32,7 @@ Class Tsumami extends dbc
         $stmt = $dbh->prepare($sql);
         $stmt->bindValue(':title',$blogs['タイトル'],PDO::PARAM_STR);
         $stmt->bindValue(':users',$blogs['ユーザー名'],PDO::PARAM_STR);
+        $stmt->bindValue(':images',$_FILES['image'],PDO::PARAM_STR);
         $stmt->bindValue(':category',$blogs['カテゴリー'],PDO::PARAM_INT);
         $stmt->bindValue(':content',$blogs['投稿内容'],PDO::PARAM_STR);
         $stmt->execute();
@@ -48,7 +48,7 @@ Class Tsumami extends dbc
 
     public function logUpdate($blogs){
         $sql = "UPDATE $this->table_name SET
-        title=:title,users=:users,category=:category,content=:content
+        title=:title,users=:users,images=:images,category=:category,content=:content
         WHERE
           id=:id";
 
@@ -58,6 +58,7 @@ Class Tsumami extends dbc
         $stmt = $dbh->prepare($sql);
         $stmt->bindValue(':title',$blogs['タイトル'],PDO::PARAM_STR);
         $stmt->bindValue(':users',$blogs['ユーザー名'],PDO::PARAM_STR);
+        $stmt->bindValue(':images',$_FILES['image'],PDO::PARAM_STR);
         $stmt->bindValue(':category',$blogs['カテゴリー'],PDO::PARAM_INT);
         $stmt->bindValue(':content',$blogs['投稿内容'],PDO::PARAM_STR);
         $stmt->bindValue(':id',$blogs['id'],PDO::PARAM_INT);
@@ -71,9 +72,6 @@ Class Tsumami extends dbc
         exit ($e);
         }
       }
-
-
-
     //ブログのバリデーション
       public function logValidate($blogs){
         if(empty($blogs['タイトル'])){
@@ -85,6 +83,9 @@ Class Tsumami extends dbc
         if(empty($blogs['ユーザー名'])){
           exit('投稿者名を入力してください');
         }
+        // if(empty($blogs['image'])){
+        //   exit('画像を添付してください');
+        // }
         if(empty($blogs['投稿内容'])){
           exit('本文を入力してください');
         }
