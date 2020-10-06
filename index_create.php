@@ -1,12 +1,11 @@
 <?php
-
 require_once('tsumami.php');
   $blogs = $_POST;
   $tsumami =new Tsumami();
   $tsumami->logValidate($blogs);
   $tsumami->logCreate($blogs);
-
 ?>
+
 <!DOCTYPE html>
 <html lang=ja>
 <head>
