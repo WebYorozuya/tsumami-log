@@ -3,8 +3,7 @@ require_once('env.php');
 //エラー表示
 // ini_set('display_errors',On);
 
-Class Dbc 
-{
+Class Dbc {
   //$table_nameを固定
   protected $table_name;
   //dbに接続
@@ -23,7 +22,7 @@ Class Dbc
       exit();
       };
       return $dbh;
-   }
+    }
 
     //dbから情報を取得
     public function getAll(){
@@ -78,7 +77,8 @@ Class Dbc
         exit ($e);
     }
   }
-    public function delete($id){
+    
+  public function delete($id) {
       if(empty($id)){
         exit('IDが不正です');
         }
