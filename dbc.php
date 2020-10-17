@@ -1,12 +1,10 @@
 <?php
 require_once('env.php');
-//エラー表示
 // ini_set('display_errors',On);
 
 Class Dbc {
   //$table_nameを固定
   protected $table_name;
-  //dbに接続
   public function dbConnect(){
     $host    = DB_HOST;
     $dbname  = DB_NAME;
@@ -54,7 +52,7 @@ Class Dbc {
 
     public function logUpdate($blogs){
       $sql = "UPDATE $this->table_name SET
-          title = :title, users = :users, images = :images, category = :category,content = :content;
+          title=:title, users=:users, images=:images, category=:category, content=:content;
       WHERE
             id =:id";
 
@@ -64,7 +62,7 @@ Class Dbc {
           $stmt = $dbh->prepare($sql);
           $stmt->bindValue(':title',$blogs['タイトル'],PDO::PARAM_STR);
           $stmt->bindValue(':users',$blogs['ユーザー名'],PDO::PARAM_STR);
-          $stmt->bindValue(':images',$_FILES['image'],PDO::PARAM_STR);
+          $stmt->bindValue(':images',$_FILES['image']['name'],PDO::PARAM_STR);
           $stmt->bindValue(':category',$blogs['カテゴリー'],PDO::PARAM_INT);
           $stmt->bindValue(':content',$blogs['投稿内容'],PDO::PARAM_STR);
           $stmt->bindValue(':id',$blogs['id'],PDO::PARAM_INT);

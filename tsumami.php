@@ -19,7 +19,6 @@ Class Tsumami extends dbc
       }
     }
 
-
     public function logCreate($blogs){
       $sql = "INSERT INTO
                   $this->table_name(title,users,images,category,content)
@@ -32,13 +31,12 @@ Class Tsumami extends dbc
         $stmt = $dbh->prepare($sql);
         $stmt->bindValue(':title',$blogs['タイトル'],PDO::PARAM_STR);
         $stmt->bindValue(':users',$blogs['ユーザー名'],PDO::PARAM_STR);
-        $stmt->bindValue(':images',$_FILES['image'],PDO::PARAM_STR);
+        $stmt->bindValue(':images',$_FILES['image']['name'],PDO::PARAM_STR);
         $stmt->bindValue(':category',$blogs['カテゴリー'],PDO::PARAM_INT);
         $stmt->bindValue(':content',$blogs['投稿内容'],PDO::PARAM_STR);
         $stmt->execute();
         $dbh->commit();
         echo '投稿しました';
-
       }catch(PDOException $e){
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $dbh->rollBack();
@@ -58,7 +56,7 @@ Class Tsumami extends dbc
         $stmt = $dbh->prepare($sql);
         $stmt->bindValue(':title',$blogs['タイトル'],PDO::PARAM_STR);
         $stmt->bindValue(':users',$blogs['ユーザー名'],PDO::PARAM_STR);
-        $stmt->bindValue(':images',$_FILES['image'],PDO::PARAM_STR);
+        $stmt->bindValue(':images',$_FILES['image']['name'],PDO::PARAM_STR);
         $stmt->bindValue(':category',$blogs['カテゴリー'],PDO::PARAM_INT);
         $stmt->bindValue(':content',$blogs['投稿内容'],PDO::PARAM_STR);
         $stmt->bindValue(':id',$blogs['id'],PDO::PARAM_INT);
@@ -83,9 +81,6 @@ Class Tsumami extends dbc
         if(empty($blogs['ユーザー名'])){
           exit('投稿者名を入力してください');
         }
-        // if(empty($blogs['image'])){
-        //   exit('画像を添付してください');
-        // }
         if(empty($blogs['投稿内容'])){
           exit('本文を入力してください');
         }

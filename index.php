@@ -46,12 +46,6 @@
 </nav>
 <img src="./images/phot02.jpeg" class="img-fluid" alt="Responsive image">
 
-<!-- <ul class='menu'>
-  <li><a href="index.html" class="btn btn-primary" role="button">新規登録</a></li>
-  <li><a href="#" class="btn btn-primary" role="button">検索</li></a>
-  <li><a href="./public/signup_form.php" class="btn btn-primary" role="button">ユーザ登録</a></li>
-  <li><a href="./public/login.php" class="btn btn-primary" role="button">ログイン</a></li>
-</ul> -->
 </div>
 <p class="menu_nav"> お酒のお供は人それぞれ<br>「つまみログ」は、お勧めのおつまみを投稿し共有できるサイトです。
 <br>素敵な出会いがあるかも知れません</p>
@@ -64,7 +58,8 @@
       <div class="col-sm-4">
         <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <img src="./images/phot01.jpeg<?php echo h($column['images'])?>" class="card-img-top" alt="...">
+            <img src="<?php echo h($column['images']) ?>" 
+            class="card-img-top" alt="...">
             <h5 class="card-title"><?php echo h($column['title'])?></h5>
             <p class="card-text"><?php echo h($column['content'])?></p>
             <a class="btn btn-primary stretched-link" href="detail.php?id=<?php echo $column['id']?>">詳細</a>
