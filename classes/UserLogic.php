@@ -1,6 +1,7 @@
 <?php
 // ini_set('display_errors',On);
-require_once '../dbconnect.php';
+require_once (dirname(__FILE__) . '/../dbconnect.php');
+
 class UserLogic
 {
   /**
