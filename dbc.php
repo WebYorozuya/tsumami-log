@@ -1,12 +1,12 @@
 <?php
 // ini_set('display_errors',On);
 // require_once(__DIR__ . '/env.php');
-require_once(__DIR__ . '/vendor/autoload.php');
+require_once realpath(__DIR__ .'/vendor/autoload.php');
 
 use Dotenv\Dotenv;
-
 //.envファイルがあるディレクトリを指定
-$dotenv = new Dotenv(__DIR__);
+$dotenv = Dotenv::createImmutable(__DIR__);
+
 //.envファイルから環境変数から読み込み
 $dotenv->load();
 
@@ -18,9 +18,9 @@ Class Dbc {
     // $dbname  = DB_NAME;
     // $dbuser  = DB_USER;  
     // $dbpass  = DB_PASS;
-    $host    = getenv('DB_HOST');
+    $host    = $_ENV['DB_HOST'];
     $dbname  = $_ENV['DB_NAME'];
-    $dbuser  = $_SERVER['DB_USER'];  
+    $dbuser  = $_ENV['DB_USER'];  
     $dbpass  = $_ENV['DB_PASS'];
     $dsn     = "mysql:host=$host;dbname=$dbname;charset=utf8";
     
