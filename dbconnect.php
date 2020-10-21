@@ -1,12 +1,20 @@
 <?php
 // ini_set('display_errors',On);
-require_once (dirname(__FILE__) .'/env.php');
+// require_once (dirname(__FILE__) .'/env.php');
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Dotenv\Dotenv;
+
+//.envファイルがあるディレクトリを指定
+$dotenv = new Dotenv(__DIR__);
+//.envファイルから環境変数から読み込み
+$dotenv->load();
 
 function connect() {
-    $host = DB_HOST;
-    $db   = LOGINDB_NAME;
-    $user = LOGINDB_USER;
-    $pass = LOGINDB_PASS;
+    $host = getenv('DB_HOST');
+    $db   = $_ENV['LOGINDB_NAME'];
+    $user = $_SERVER['LOGINDB_USER'];
+    $pass = $_ENV['LOGINDB_PASS'];
     $dsn  = "mysql:host=$host;dbname=$db;charset=utf8mb4";
   
     try{

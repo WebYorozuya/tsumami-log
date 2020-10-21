@@ -1,15 +1,27 @@
 <?php
 // ini_set('display_errors',On);
-require_once(__FILE__ . '/env.php');
+// require_once(__DIR__ . '/env.php');
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Dotenv\Dotenv;
+
+//.envファイルがあるディレクトリを指定
+$dotenv = new Dotenv(__DIR__);
+//.envファイルから環境変数から読み込み
+$dotenv->load();
 
 Class Dbc {
   //$table_nameを固定
   protected $table_name;
   public function dbConnect() {
-    $host    = DB_HOST;
-    $dbname  = DB_NAME;
-    $dbuser  = DB_USER;  
-    $dbpass  = DB_PASS;
+    // $host    = DB_HOST;
+    // $dbname  = DB_NAME;
+    // $dbuser  = DB_USER;  
+    // $dbpass  = DB_PASS;
+    $host    = getenv('DB_HOST');
+    $dbname  = $_ENV['DB_NAME'];
+    $dbuser  = $_SERVER['DB_USER'];  
+    $dbpass  = $_ENV['DB_PASS'];
     $dsn     = "mysql:host=$host;dbname=$dbname;charset=utf8";
     
     try {
