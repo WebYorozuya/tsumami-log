@@ -1,6 +1,6 @@
 <?php
 // 0ini_set('display_errors',On);
-  require_once(dirname(_FILE_) .'/tsumami.php');
+  require_once(dirname(__FILE__) .'/tsumami.php');
     $tsumami = new Tsumami();
     $result = $tsumami->getById($_GET['id']);
 
