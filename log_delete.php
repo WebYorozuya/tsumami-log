@@ -1,5 +1,5 @@
 <?php
-  require_once(dirname(__FILE__) .'/tsumami.php');
+  require_once(dirname(__FILE__) . '/tsumami.php');
 
   $tsumami = new Tsumami();
   $result = $tsumami->delete($_GET['id']);

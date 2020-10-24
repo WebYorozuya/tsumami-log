@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) .'/dbc.php');
+require_once(dirname(__FILE__) . '/dbc.php');
 
 Class Tsumami extends dbc {
     protected $table_name = 'tsumamilog';

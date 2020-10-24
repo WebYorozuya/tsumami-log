@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) .'/tsumami.php');
+require_once(dirname(__FILE__) . '/tsumami.php');
   $blogs = $_POST;
   $tsumami =new Tsumami();
   $tsumami->logValidate($blogs);
