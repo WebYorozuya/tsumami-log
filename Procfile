@@ -1,2 +1,1 @@
-release: touch .env
-web: vendor/bin/heroku-php-apache2 
+web: touch .env && vendor/bin/heroku-php-apache2
