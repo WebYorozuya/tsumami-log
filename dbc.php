@@ -25,8 +25,7 @@ Class Dbc {
     $dsn     = "mysql:host=$host;dbname=$dbname;charset=utf8";
     
     try {
-      $dbh = new \PDO($dsn,$dbuser,$dbpass,
-      [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,]); 
+      $dbh = new \PDO($dsn,$dbuser,$dbpass,[\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,]); 
      }catch(PDOException $e){
       echo 'error' . $e->getMessage();
       exit();
