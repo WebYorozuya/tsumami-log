@@ -14,14 +14,14 @@ Class Dbc {
   //$table_nameを固定
   protected $table_name;
   public function dbConnect() {
-    // $host    = DB_HOST;
-    // $dbname  = DB_NAME;
-    // $dbuser  = DB_USER;  
-    // $dbpass  = DB_PASS;
-    $host    = $_ENV['DB_HOST'];
-    $dbname  = $_ENV['DB_NAME'];
-    $dbuser  = $_ENV['DB_USER'];  
-    $dbpass  = $_ENV['DB_PASS'];
+    // $host    = $_ENV['DB_HOST'];
+    // $dbname  = $_ENV['DB_NAME'];
+    // $dbuser  = $_ENV['DB_USER'];  
+    // $dbpass  = $_ENV['DB_PASS'];
+    $host    = $_ENV['CLEAR_DB_HOST'];
+    $dbname  = $_ENV['CLEAR_DB_NAME'];
+    $dbuser  = $_ENV['CLEAR_DB_USER'];  
+    $dbpass  = $_ENV['CLEAR_DB_PASS'];
     $dsn     = "mysql:host=$host;dbname=$dbname;charset=utf8";
     
     try {
