@@ -1,9 +1,17 @@
 <?php
 require_once(dirname(__FILE__) . '/tsumami.php');
-  $blogs = $_POST;
-  $tsumami =new Tsumami();
-  $tsumami->logValidate($blogs);
-  $tsumami->logCreate($blogs);
+require_once(dirname(__FILE__) . '/s3upload.php');
+
+$blogs = $_POST;
+  //ファイル関連取得
+$file = $_FILES['image'];
+$filename = basename($file['name']);
+$tmp_path = $file['tmp_name'];
+$save_filename = date('YmdHis') . $filename;
+$save_path = s3getObject($save_filename);
+$tsumami = new Tsumami();
+$tsumami->logValidate($blogs);
+$tsumami->logCreate($blogs ,$save_path);
 ?>
 
 <!DOCTYPE html>
