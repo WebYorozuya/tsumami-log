@@ -7,7 +7,6 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-
 /* s3に保存しObjectURLを取得
  * @param string $images ファイル名
  * @return string $result
@@ -15,13 +14,11 @@ $dotenv->load();
 function s3getObject($save_filename) {
 
   //aws
-  // $bucket  = $_ENV['BUCKET'];
-  // $key     =  $_ENV['KEY'];
-  // $secret =  $_ENV['SECRET_KEY'];
-  // $baseUrl =  $_ENV['BASE_URL'];
-  $bucket  = 'tsumami-log';
-  $key     = 'AKIAT2CBCKREQSSRQPDK';
-  $secret = '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';
+  $bucket  = $_ENV['BUCKET'];
+  $key     =  $_ENV['KEY'];
+  $secret =  $_ENV['SECRET_KEY'];
+  $baseUrl =  $_ENV['BASE_URL'];
+
   //ファイル関連取得
   $file = $_FILES['image'];
   $filename = basename($file['name']);
