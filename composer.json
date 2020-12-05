@@ -6,7 +6,7 @@
     "symfony/twig-bridge": "^3",
     "vlucas/phpdotenv": "^5.2",
     "josegonzalez/dotenv": "^2.0",
-    "aws/aws-sdk-php": "^3.158"
+    "aws/aws-sdk-php": "^3.164"
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*"

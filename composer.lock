@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ac6efc23b84cfc1276c0e97e4dac784",
+    "content-hash": "3089df5ffe4ef1e76e1100d6d3fc4ba6",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.158.20",
+            "version": "3.164.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "25e4fe20837601adbf69921da2ef7d13ecf8932c"
+                "reference": "39ecf57d828eb50ab23fd70255a68b8996392ac9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/25e4fe20837601adbf69921da2ef7d13ecf8932c",
-                "reference": "25e4fe20837601adbf69921da2ef7d13ecf8932c",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/39ecf57d828eb50ab23fd70255a68b8996392ac9",
+                "reference": "39ecf57d828eb50ab23fd70255a68b8996392ac9",
                 "shasum": ""
             },
             "require": {
@@ -89,7 +89,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2020-11-04T20:11:29+00:00"
+            "time": "2020-11-24T19:18:22+00:00"
         },
         {
             "name": "graham-campbell/result-type",
