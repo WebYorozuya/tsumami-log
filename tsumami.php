@@ -1,5 +1,6 @@
 <?php
 require_once(dirname(__FILE__) . '/dbc.php');
+require_once(dirname(__FILE__) . '/s3upload.php');
 
 Class Tsumami extends dbc {
     protected $table_name = 'tsumamilog';
@@ -18,7 +19,9 @@ Class Tsumami extends dbc {
       }
     }
 
-    public function logCreate($blogs) { 
+    public function logCreate($blogs , $save_path) { 
+      
+      $s3image = s3getObject($save_path);
       $sql = "INSERT INTO
                   $this->table_name(title,users,images,category,content)
               VALUES
@@ -30,7 +33,7 @@ Class Tsumami extends dbc {
         $stmt = $dbh->prepare($sql);
         $stmt->bindValue(':title',$blogs['タイトル'],PDO::PARAM_STR);
         $stmt->bindValue(':users',$blogs['ユーザー名'],PDO::PARAM_STR);
-        $stmt->bindValue(':images',$_FILES['image']['name'],PDO::PARAM_STR);
+        $stmt->bindValue(':images',$s3image,PDO::PARAM_STR);
         $stmt->bindValue(':category',$blogs['カテゴリー'],PDO::PARAM_INT);
         $stmt->bindValue(':content',$blogs['投稿内容'],PDO::PARAM_STR);
         $stmt->execute();
