@@ -1,6 +1,4 @@
 <?php
-// ini_set('display_errors',On);
-// require_once(__DIR__ . '/env.php');
 require_once realpath(__DIR__ . '/vendor/autoload.php');
 
 use Dotenv\Dotenv;
