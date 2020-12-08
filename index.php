@@ -48,23 +48,17 @@
           </div>
         </nav>
     </header>
-    <img class="" src="./img/tsumami-top.png" class="img-fluid" alt="Responsive image">
+    <img src="./img/tsumami-top.png" class="rounded mx-auto d-block container-lg img-fluid" alt="Responsive image">
     </div>
 
     <div class="container bg-white py-5 my-5">
       <!-- タブ -->
-      <div id="tab">
-        <h2 class="text-center py-3">つまみログとは？</h2>
-      </div>
       <div class="tav">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item col-4 p-0" role="presentation">
-            <a class="nav-link active text-center" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">このサイトについて</a>
+          <li class="nav-item col-6 p-0" role="presentation">
+            <a class="nav-link active text-center" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">つまみログとは？</a>
           </li>
-          <li class="nav-item col-4 p-0" role="presentation">
-            <a class="nav-link text-center" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">こ</a>
-          </li>
-          <li class="nav-item col-4 p-0" role="presentation">
+          <li class="nav-item col-6 p-0" role="presentation">
             <a class="nav-link text-center" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
           </li>
         </ul>
@@ -74,8 +68,7 @@
               お酒のお供は人それぞれ「つまみログ」は、皆さんのおつまみを投稿し共有できるサイトです。
             </div>
           </div>
-          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-          <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+          <div class="tab-pane fade col-md-8 col-12 my-5 mx-auto" id="contact" role="tabpanel" aria-labelledby="contact-tab">お問い合わせフォームをいれる</div>
         </div>
       </div>
 
@@ -106,9 +99,9 @@
               <h4 class="d-inlineblock py-3 border-bottom border-info">Profile</h4>
             </div>
             <div class="mx-5">
-              <img class="img-fluid rounded-circle" src="./img/profile.jpeg" alt="">
+              <img class="img-fluid rounded-circle" src="./img/profile.png" alt="">
             </div>
-            <p>お酒が好きな31歳、R1.11月〜プログラミング学習を始め、将来はwebエンジニア転職を目指す
+            <p>お酒が好きな31歳、R1.11月〜プログラミング学習を始めました。将来はwebエンジニア転職を目指していきたいです。
           </div>
           <div class="col-md-4 col-12">
             <div class="py-4">
@@ -116,9 +109,9 @@
             </div>
             <div class="mx-5">
               <ul class="list-group list-group-flush">
-                <li class="list-group-item"><a href="">ポートフォリオサイト</a></li>
-                <li class="list-group-item"><a href="">>ポートフォリオサイト</a></li>
-                <li class="list-group-item"><a href="">>ポートフォリオサイト</a></li>
+                <li class="list-group-item"><a href="https://sakesuki.github.io/frontend-dev/">Sass/JavaScriptを使用したWEBページ</a></li>
+                <li class="list-group-item"><a href="https://sakesuki.github.io/TypingGame/">タイピングゲーム</a></li>
+                <!-- <li class="list-group-item"><a href="">>ポートフォリオサイト</a></li> -->
               </ul>
             </div>
           </div>
@@ -132,6 +125,7 @@
             </div>
           </div>
         </div>
+      </div>
         <div class="bg-dark text-white text-center p-3">
           Copyright - osakesuki.2020 All Rights Reserved.
         </div>
