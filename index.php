@@ -1,12 +1,16 @@
   <?php
   require_once(dirname(__FILE__) . '/tsumami.php');
-
   $tsumami = new Tsumami('tsumamilog');
+
   //dbからつまみログのデータを取得
-  $tsumamiData = $tsumami->getAll();
-  function h($s)
+  // $tsumamiData = $tsumami->getAll();
+  $tsumamiData = $tsumami->getPages();
+  $pages = $tsumami->countPage();
+  $page = $_REQUEST['page'];
+
+  function h($str)
   {
-    return htmlspecialchars($s, ENT_QUOTES, "utf-8");
+    return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
   }
   ?>
 
@@ -16,6 +20,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="./favicon/favicon.ico" id="favicon">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon-180x180.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
@@ -72,6 +78,7 @@
         </div>
       </div>
 
+      <!-- 投稿部分-->
       <h2 id="new-content">新規投稿一覧</h2>
       <div class="container">
         <div class="row">
@@ -91,6 +98,25 @@
       </div>
     </div>
 
+    <!--ページネーション-->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <!-- <li class="page-item disabled">
+      <a class="page-link" href="index.php" tabindex="-1" aria-disabled="true">Previous</a>
+    </li> -->
+        <?php if ($page >= 2) : ?>
+          <li class="page-item"><a class="page-link" href="index.php?page=<?php print($page - 1); ?>">前←</a></li>
+        <?php endif; ?>
+
+        <?php if ($page < $pages) : ?>
+          <li class="page-item"><a class="page-link" href="index.php?page=<?php print($page + 1); ?>">次→</a></li>
+        <?php endif; ?>
+        <!-- <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li> -->
+      </ul>
+    </nav>
+    <!--フッター部分-->
     <footer class="bg-white">
       <div class="container">
         <div class="row">
@@ -126,9 +152,9 @@
           </div>
         </div>
       </div>
-        <div class="bg-dark text-white text-center p-3">
-          Copyright - osakesuki.2020 All Rights Reserved.
-        </div>
+      <div class="bg-dark text-white text-center p-3">
+        Copyright - osakesuki.2020 All Rights Reserved.
+      </div>
     </footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
