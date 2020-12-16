@@ -1,6 +1,6 @@
 <?php
+require_once realpath(__DIR__ . '/s3upload.php');
 require_once realpath(__DIR__ . '/vendor/autoload.php');
-
 use Dotenv\Dotenv;
 //.envファイルがあるディレクトリを指定
 $dotenv = Dotenv::createImmutable(__DIR__);
@@ -29,16 +29,6 @@ class Dbc
     };
     return $dbh;
   }
-
-  //dbから情報を取得
-  // public function getAll() {
-  //   $dbh = $this->dbConnect();
-  //   $sql = "SELECT * FROM $this->table_name";
-  //   $stmt = $dbh->query($sql);
-  //   $result = $stmt->fetchall(\PDO::FETCH_ASSOC);
-  //   return $result;
-  //   $dbh = null;
-  // }
 
   //dbから情報を取得(ページネーション用)
   public function getPages()
@@ -71,7 +61,6 @@ class Dbc
     return $max_page;
   }
 
-
   //dbのIDを取得
   public function getById($id)
   {
@@ -79,7 +68,6 @@ class Dbc
       exit('IDが不正です');
     }
     $dbh = $this->dbConnect();
-
     $stmt = $dbh->prepare("SELECT * FROM $this->table_name where id = :id");
     $stmt->bindValue(':id', (int)$id, \PDO::PARAM_INT);
     $stmt->execute();
@@ -101,11 +89,14 @@ class Dbc
 
     $dbh = $this->dbConnect();
     $dbh->beginTransaction();
+
+    $s3image = s3getObject($blogs);
+   
     try {
       $stmt = $dbh->prepare($sql);
       $stmt->bindValue(':title', $blogs['タイトル'], PDO::PARAM_STR);
       $stmt->bindValue(':users', $blogs['ユーザー名'], PDO::PARAM_STR);
-      $stmt->bindValue(':images', $_FILES['image']['name'], PDO::PARAM_STR);
+      $stmt->bindValue(':images', $s3image, PDO::PARAM_STR);
       $stmt->bindValue(':category', $blogs['カテゴリー'], PDO::PARAM_INT);
       $stmt->bindValue(':content', $blogs['投稿内容'], PDO::PARAM_STR);
       $stmt->bindValue(':id', $blogs['id'], PDO::PARAM_INT);
@@ -131,6 +122,5 @@ class Dbc
     $stmt->bindValue(':id', (int)$id, \PDO::PARAM_INT);
     $stmt->execute();
     echo '削除しました';
-    // return $result;
   }
 }
