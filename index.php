@@ -16,7 +16,6 @@
 
   <!DOCTYPE html>
   <html lang="ja">
-
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -47,10 +46,6 @@
               <li class="nav-item">
                 <a class="nav-link" href="./public/login.php">ログイン</a></li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
           </div>
         </nav>
     </header>
@@ -74,7 +69,23 @@
               お酒のお供は人それぞれ「つまみログ」は、皆さんのおつまみを投稿し共有できるサイトです。
             </div>
           </div>
-          <div class="tab-pane fade col-md-8 col-12 my-5 mx-auto" id="contact" role="tabpanel" aria-labelledby="contact-tab">お問い合わせフォームをいれる</div>
+          <div class="tab-pane fade col-md-8 col-12 my-5 mx-auto" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <form action="./confirm.php" method="POST">
+              <div class="form-group">
+                <label for="name">お名前</label>
+                <input type="text" name="name" class="form-control" value placeholder="おつまみ たろう">
+              </div>
+              <div class="form-group">
+                <label for="email">メールアドレス</label>
+                <input type="mail" name="mail" class="form-control" value placeholder="xxxexample@.com">
+              </div>
+              <div class="form-group">
+                <label for="content">お問い合わせ</label>
+                <textarea name="contact" id="contact" cols="30" rows="5" class="form-control"></textarea>
+              </div>
+              <button type="submit" value="送信" class="btn btn-primary w-100">送信</button>
+            </form>
+          </div>
         </div>
       </div>
 
@@ -137,7 +148,6 @@
               <ul class="list-group list-group-flush">
                 <li class="list-group-item"><a href="https://sakesuki.github.io/frontend-dev/">Sass/JavaScriptを使用したWEBページ</a></li>
                 <li class="list-group-item"><a href="https://sakesuki.github.io/TypingGame/">タイピングゲーム</a></li>
-                <!-- <li class="list-group-item"><a href="">>ポートフォリオサイト</a></li> -->
               </ul>
             </div>
           </div>
