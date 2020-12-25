@@ -7,7 +7,7 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-/* s3に保存しObjectURLを取得
+/** s3に保存しObjectURLを取得
  * @param string $images ファイル名
  * @return string $result
  */
