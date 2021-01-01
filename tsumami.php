@@ -95,4 +95,17 @@ class Tsumami extends dbc
       exit('カテゴリーは必須です');
     }
   }
+
+  public function confirmValidate($blogs)
+  {
+    if (empty($blogs['name'])) {
+      exit('お名前を入力して下さい');
+    }
+    if (empty($blogs['mail'])) {
+      exit('アドレスを入力して下さい');
+    }
+    if (empty($blogs['contact'])) {
+      exit('お問合せ内容を入力して下さい');
+    }
+  }
 }
